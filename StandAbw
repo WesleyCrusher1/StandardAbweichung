@@ -1,0 +1,47 @@
+program Aufgabe3 (input, output);
+{ loest Aufgabe 3 }
+
+  const
+  FELDGROESSE = 10;
+  
+  type
+  tIndex = 1..FELDGROESSE;
+  tFeld = array[tIndex] of real;
+  
+  var
+  Feld : tFeld;
+  j : integer;
+  
+  function StandAbw(inFeld : tFeld): real;
+  { Berechnet die Standardabweichung des Feldes }
+                     
+    var
+    i : tIndex;
+    m,
+    v,
+    s : real; 
+    
+  begin
+    m := 0;
+    for i := 1 to FELDGROESSE do
+    begin
+      m := m + inFeld[i];
+    end;
+    m := m / FELDGROESSE;
+    v := 0;
+    for i := 1 to FELDGROESSE do
+    begin
+      v := v + sqr(inFeld[i] - m);
+    end;
+    v := v / FELDGROESSE;
+    s := sqrt(v);
+    StandAbw := s;
+  end; { StandAbw }
+  
+begin
+  for j := 1 to FELDGROESSE do
+  begin
+    readln (Feld[j]); 
+  end;
+  writeln (StandAbw(Feld));
+end. { Aufgabe3 }
